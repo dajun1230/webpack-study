@@ -31,17 +31,40 @@ module.exports = {
         test: /\.css$/,
         // use: "css-loader"
         // 多个loader 是有执行顺序的，自后往前
-        use: [ "style-loader", "css-loader" ]
+        use: [ "xy-style-loader", "xy-css-loader" ]
       },
       {
         test: /.less$/,
         use: [ 
-          // "style-loader", 
-          MiniCssExtractPlugin.loader,
-          "css-loader", "postcss-loader", "less-loader"
+          "xy-style-loader", 
+          // MiniCssExtractPlugin.loader,
+          "xy-css-loader", "postcss-loader", "xy-less-loader"
+        ]
+      },
+      {
+        test: /.js$/,
+        // use: path.resolve(__dirname, './src/myLoaders/replace-loader.js'),
+        // use: {
+        //   loader: path.resolve(__dirname, './src/myLoaders/replace-loader.js'),
+        //   options: {
+        //     name: '小杨'
+        //   }
+        // }
+        use: [
+          'replace-loader',
+          {
+            loader: 'replace-loader-async',
+            options: {
+              name: '小杨'
+            }
+          }
         ]
       }
     ]
+  },
+  // 让loader以简短的名称存在，使用resolveLoader:
+  resolveLoader: {
+    modules: ["node_modules", "./src/myLoaders"]
   },
   plugins: [
     new HtmlWebpackPlugin({

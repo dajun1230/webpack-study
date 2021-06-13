@@ -1,3 +1,3 @@
-import css from './index.less';
+import indexCss from './index.less';
 
 console.log('hello, webpack');

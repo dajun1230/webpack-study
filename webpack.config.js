@@ -23,7 +23,7 @@ module.exports = {
     // 输出后的文件名称，将所有依赖的模块合并输出到main.js，默认为main.js
     filename: 'main.js',
     // 占位符
-    // filename: '[name]-[chunkhash:8].js'
+    // filename: '[name]-[chunkhash:6].js'
   },
   module: {
     rules: [
@@ -46,11 +46,17 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      filename: 'index.html'
+      filename: 'index.html',
+      chunks: ['main']
     }),
+    // new HtmlWebpackPlugin({
+    //   template: './public/other.html',
+    //   filename: 'other.html',
+    //   chunks: ['other']
+    // }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'index.css',
+      filename: 'css/index-[chunkhash:6].css',
     })
   ]
 }

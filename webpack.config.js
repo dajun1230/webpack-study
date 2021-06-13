@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'development',
@@ -32,6 +33,14 @@ module.exports = {
         // 多个loader 是有执行顺序的，自后往前
         use: [ "style-loader", "css-loader" ]
       },
+      {
+        test: /.less$/,
+        use: [ 
+          // "style-loader", 
+          MiniCssExtractPlugin.loader,
+          "css-loader", "postcss-loader", "less-loader"
+        ]
+      }
     ]
   },
   plugins: [
@@ -40,5 +49,8 @@ module.exports = {
       filename: 'index.html'
     }),
     new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'index.css',
+    })
   ]
 }

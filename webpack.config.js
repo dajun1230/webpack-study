@@ -31,18 +31,18 @@ module.exports = {
         test: /\.css$/,
         // use: "css-loader"
         // 多个loader 是有执行顺序的，自后往前
-        use: [ "xy-style-loader", "xy-css-loader" ]
+        use: [ "style-loader", "css-loader" ]
       },
       {
-        test: /.less$/,
+        test: /\.less$/,
         use: [ 
-          "xy-style-loader", 
+          "style-loader", 
           // MiniCssExtractPlugin.loader,
-          "xy-css-loader", "postcss-loader", "xy-less-loader"
+          "css-loader", "postcss-loader", "less-loader"
         ]
       },
       {
-        test: /.js$/,
+        test: /\.js$/,
         // use: path.resolve(__dirname, './src/myLoaders/replace-loader.js'),
         // use: {
         //   loader: path.resolve(__dirname, './src/myLoaders/replace-loader.js'),
@@ -59,6 +59,31 @@ module.exports = {
             }
           }
         ]
+      },
+      // {
+      //   test: /\.(png|jpe?g|gif)$/,
+      //   use: {
+      //     loader: 'file-loader',
+      //     options: {
+      //       name: '[name].[ext]',
+      //       outputPath: 'images/'
+      //     }
+      //   }
+      // },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'images/',
+            // limit: 1024 * 10
+          }
+        }
+      },
+      {
+        test: /\.woff2$/,
+        use: 'file-loader'
       }
     ]
   },

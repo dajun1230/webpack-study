@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
@@ -85,6 +86,12 @@ module.exports = {
       {
         test: /\.woff2$/,
         use: 'file-loader'
+      },
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+        }
       }
     ]
   },
@@ -100,7 +107,10 @@ module.exports = {
       '/api': {
         target: 'http://localhost:9092'
       }
-    }
+    },
+    hot: true,
+    // 即便HMR不生效，浏览器也不自动刷新，就开启hotOnly
+    hotOnly: true // 关闭浏览器自动刷新功能
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -116,6 +126,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/index-[chunkhash:6].css',
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin(),
   ]
 }

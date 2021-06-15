@@ -92,6 +92,16 @@ module.exports = {
   resolveLoader: {
     modules: ["node_modules", "./src/myLoaders"]
   },
+  devServer: {
+    contentBase: './dist',
+    open: true,
+    port: 8081,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:9092'
+      }
+    }
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',

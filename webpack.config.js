@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const TxtWebpackPlugin = require('./src/myPlugins/txt-webpack-plugin');
+// const FileWebpackPlugin = require('./src/myPlugins/file-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -128,5 +130,7 @@ module.exports = {
       filename: 'css/index-[chunkhash:6].css',
     }),
     new webpack.HotModuleReplacementPlugin(),
+    // new TxtWebpackPlugin({name: '小杨'}),
+    // new FileWebpackPlugin(),
   ]
 }

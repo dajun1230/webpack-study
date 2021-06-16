@@ -50,15 +50,29 @@
 //   console.log(item);
 // })
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>hello React</div>
-    )
-  }
-}
+// class App extends React.Component {
+//   render() {
+//     return (
+//       <div>hello React</div>
+//     )
+//   }
+// }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// ReactDOM.render(<App />, document.getElementById('root'));
+
+// 查看生命周期钩子
+// const webpack = require('webpack');
+// const config = require('../webpack.config');
+
+// const compiler = webpack(config);
+
+// Object.keys(compiler.hooks).forEach((hookName) => {
+//   compiler.hooks[hookName].tap('xxx', () => {
+//     console.log(`run ====> ${hookName}`);
+//   })
+// })
+
+// compiler.run();
